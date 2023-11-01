@@ -1,0 +1,77 @@
+﻿@page
+@model My_Scripture_Journal.Pages.Scriptures.IndexModel
+
+@{
+    ViewData["Title"] = "Study Entries";
+}
+<br />
+
+<h4>Study Entries</h4>
+<br/>
+<br />
+<torm method=" get">
+            <input type="text" name="searchString" placeholder="Search Entries" >
+            <button type="submit"> Search </button>
+            <select name="sortOrder">
+                <option value="Name">Name</option>
+                <option value="Date">Date</option>
+            </select>
+            <button type="submit">Sort</button>
+</torm>
+<hr/>
+<br />
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Scripture[0].Date_Studied)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Scripture[0].Add_Scripture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Scripture[0].Inspired_Notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Scripture) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_Studied)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Add_Scripture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inspired_Notes)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> 
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> 
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br />
+<hr/>
+<p>
+    <a asp-page="Create">Create New Study Entry</a>
+</p>
+<br />
+<br />
+<br/>
+<br />
+
+
